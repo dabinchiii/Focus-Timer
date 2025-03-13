@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Modak } from "next/font/google";
 
 import TimerButton from "./TimerButton";
@@ -11,6 +12,31 @@ const modak = Modak({
   weight: "400",
   subsets: ["latin"],
 });
+
+const startIcon = (
+  <Image
+    src={(process.env.PUBLIC_URL || "") + "/images/icons/start.svg"}
+    width={24}
+    height={24}
+    alt="start"
+  />
+);
+const pauseIcon = (
+  <Image
+    src={(process.env.PUBLIC_URL || "") + "/images/icons/pause.svg"}
+    width={24}
+    height={24}
+    alt="pause"
+  />
+);
+const resetIcon = (
+  <Image
+    src={(process.env.PUBLIC_URL || "") + "/images/icons/reset.png"}
+    width={40}
+    height={40}
+    alt="reset"
+  />
+);
 
 const Timer = (): React.ReactNode => {
   const {
@@ -32,10 +58,10 @@ const Timer = (): React.ReactNode => {
       >
         {formattedTimeLeft}
       </div>
-      <div>
-        <TimerButton onClick={startTimer}>start</TimerButton>
-        <TimerButton onClick={pauseTimer}>pause</TimerButton>
-        <TimerButton onClick={() => resetTimer()}>reset</TimerButton>
+      <div className="flex gap-4">
+        <TimerButton onClick={startTimer}>{startIcon}</TimerButton>
+        <TimerButton onClick={pauseTimer}>{pauseIcon}</TimerButton>
+        <TimerButton onClick={() => resetTimer()}>{resetIcon}</TimerButton>
       </div>
     </div>
   );
