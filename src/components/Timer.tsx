@@ -3,9 +3,14 @@
 import Image from "next/image";
 import { Modak } from "next/font/google";
 
-import TimerButton from "./TimerButton";
-import { CircularProgressbarWithChildren } from "react-circular-progressbar";
+// react-circular-progressbar
+import {
+  CircularProgressbarWithChildren,
+  buildStyles,
+} from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+
+import TimerButton from "./TimerButton";
 
 import useTimer from "@/hooks/useTimer";
 
@@ -55,7 +60,15 @@ const Timer = (): React.ReactNode => {
 
   return (
     <div className="p-4 border flex flex-col gap-8 p-8 mx-auto w-[500px]">
-      <CircularProgressbarWithChildren value={50}>
+      <CircularProgressbarWithChildren
+        value={50}
+        strokeWidth={10}
+        styles={buildStyles({
+          pathColor: "#FFFFFF",
+          trailColor: `rgba(0, 0, 0, 0.3)`,
+          backgroundColor: "#000000",
+        })}
+      >
         <div
           className={`${modak.className} font-modak text-white text-8xl [text-shadow:_0_10px_10px_rgb(0_0_0_/_0.25)] `}
         >
