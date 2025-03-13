@@ -12,6 +12,7 @@ import "react-circular-progressbar/dist/styles.css";
 
 import TimerButton from "./TimerButton";
 
+import { useState } from "react";
 import useTimer from "@/hooks/useTimer";
 
 const modak = Modak({
@@ -46,22 +47,24 @@ const resetIcon = (
 );
 
 const Timer = (): React.ReactNode => {
+  const [targetMinutes] = useState<number>(1);
+
   const {
-    // timeLeft,
+    timeLeft,
     formattedTimeLeft,
     // isActive,
     startTimer,
     pauseTimer,
     resetTimer,
   } = useTimer({
-    initialMinutes: 5,
+    initialMinutes: targetMinutes,
     onFinish: () => {},
   });
 
   return (
     <div className="p-4 border flex flex-col gap-8 p-8 mx-auto w-[500px]">
       <CircularProgressbarWithChildren
-        value={50}
+        value={(timeLeft / (targetMinutes * 60)) * 100}
         strokeWidth={10}
         styles={buildStyles({
           pathColor: "#FFFFFF",
