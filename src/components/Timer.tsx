@@ -4,6 +4,8 @@ import Image from "next/image";
 import { Modak } from "next/font/google";
 
 import TimerButton from "./TimerButton";
+import { CircularProgressbarWithChildren } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
 
 import useTimer from "@/hooks/useTimer";
 
@@ -53,16 +55,18 @@ const Timer = (): React.ReactNode => {
 
   return (
     <div className="p-4 border flex flex-col gap-8 p-8 mx-auto w-[500px]">
-      <div
-        className={`${modak.className} font-modak text-white text-8xl [text-shadow:_0_10px_10px_rgb(0_0_0_/_0.25)] `}
-      >
-        {formattedTimeLeft}
-      </div>
-      <div className="flex gap-4">
-        <TimerButton onClick={startTimer}>{startIcon}</TimerButton>
-        <TimerButton onClick={pauseTimer}>{pauseIcon}</TimerButton>
-        <TimerButton onClick={() => resetTimer()}>{resetIcon}</TimerButton>
-      </div>
+      <CircularProgressbarWithChildren value={50}>
+        <div
+          className={`${modak.className} font-modak text-white text-8xl [text-shadow:_0_10px_10px_rgb(0_0_0_/_0.25)] `}
+        >
+          {formattedTimeLeft}
+        </div>
+        <div className="flex gap-4">
+          <TimerButton onClick={startTimer}>{startIcon}</TimerButton>
+          <TimerButton onClick={pauseTimer}>{pauseIcon}</TimerButton>
+          <TimerButton onClick={() => resetTimer()}>{resetIcon}</TimerButton>
+        </div>
+      </CircularProgressbarWithChildren>
     </div>
   );
 };
