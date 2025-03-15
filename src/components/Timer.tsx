@@ -70,8 +70,8 @@ const Timer = (): React.ReactNode => {
   }, [targetMinutes, resetTimer]);
 
   return (
-    <>
-      <div className="p-4 border flex flex-col gap-8 p-8 mx-auto w-[500px]">
+    <div className="flex flex-col gap-8 p-8">
+      <div className="mx-auto w-[500px] h-[500px]">
         <CircularProgressbarWithChildren
           value={(timeLeft / (targetMinutes * 60)) * 100}
           strokeWidth={10}
@@ -93,7 +93,7 @@ const Timer = (): React.ReactNode => {
           </div>
         </CircularProgressbarWithChildren>
       </div>
-      <div className="md:flex gap-8 m-4">
+      <div className="flex gap-8 m-4 justify-center justify-items-center">
         <SessionButton
           title="Focus Time"
           sessionTime={25}
@@ -122,7 +122,7 @@ const Timer = (): React.ReactNode => {
           }}
         />
       </div>
-    </>
+    </div>
   );
 };
 
