@@ -17,6 +17,19 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Focus Timer",
   description: "A simple Pomodoro Timer",
+  openGraph: {
+    title: "Focus Timer 🍅",
+    description: "Simple pomodoro timer",
+    url: "https://focus-timer-eight.vercel.app/",
+    siteName: "Focus Timer",
+    images: {
+      url: process.env.NEXT_PUBLIC_BASE_URL + "images/ogimage.png",
+      width: "",
+      height: "",
+      alt: "Focus Timer - Pomodoro Timer",
+    },
+    type: "website",
+  },
 };
 
 export default function RootLayout({
