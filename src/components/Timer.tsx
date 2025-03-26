@@ -10,6 +10,9 @@ import {
 } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
+// js-confetti
+import JSConfetti from "js-confetti";
+
 import TimerButton from "./TimerButton";
 
 import { useState, useEffect } from "react";
@@ -52,6 +55,7 @@ type Session = "FOCUS_TIME" | "SHORT_BREAK" | "LONG_BREAK";
 const Timer = (): React.ReactNode => {
   const [targetMinutes, setTargetMinutes] = useState<number>(25);
   const [selectedSession, setSelectedSession] = useState<Session>("FOCUS_TIME");
+  const [jsConfetti, setJsConfetti] = useState<JSConfetti | null>(null);
 
   const {
     timeLeft,
@@ -62,8 +66,19 @@ const Timer = (): React.ReactNode => {
     resetTimer,
   } = useTimer({
     initialMinutes: targetMinutes,
-    onFinish: () => {},
+    onFinish: () => {
+      if (jsConfetti) {
+        jsConfetti.addConfetti();
+        jsConfetti.addConfetti({ emojis: ["🍅"] });
+      }
+    },
   });
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setJsConfetti(new JSConfetti());
+    }
+  }, []);
 
   useEffect(() => {
     resetTimer(targetMinutes);
