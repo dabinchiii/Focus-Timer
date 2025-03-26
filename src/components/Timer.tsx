@@ -81,6 +81,13 @@ const Timer = (): React.ReactNode => {
   }, []);
 
   useEffect(() => {
+    if (jsConfetti) {
+      jsConfetti.addConfetti();
+      jsConfetti.addConfetti({ emojis: ["🍅"] });
+    }
+  }, [jsConfetti]);
+
+  useEffect(() => {
     resetTimer(targetMinutes);
   }, [targetMinutes, resetTimer]);
 
